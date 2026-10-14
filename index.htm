@@ -1,1 +1,1005 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto de Inteligência Artificial · Drogaria Beta Farma | Único Contato</title>
+<meta name="description" content="Proposta comercial e documento de projeto de inteligência artificial para a Drogaria Beta Farma — Único Contato.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F3EE;
+    --card:#FFFFFF;
+    --border:#E8E4DD;
+    --green:#22C55E;
+    --green-dark:#15803D;
+    --green-hover:#1EB054;
+    --wa:#25D366;
+    --navy:#0D2240;
+    --ink:#0D0D0D;
+    --black:#050911;
+    --on-navy:#FFFFFF;
+    --muted:#55554D;
+    --soft:#8A8A80;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(13,34,64,.04), 0 10px 30px rgba(13,34,64,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{
+    font-family:'Manrope',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    font-size:16.5px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .doc{max-width:1060px;margin:0 auto;padding:40px 28px 90px}
+  section{margin-top:76px}
+  h1,h2,h3{font-family:'Sora',sans-serif;color:var(--black)}
+  h2{font-weight:700;font-size:clamp(26px,3.4vw,36px);line-height:1.22;margin:14px 0 12px;letter-spacing:-.01em}
+  h3{font-weight:700;font-size:18px;line-height:1.35;margin-bottom:8px}
+  p{margin-bottom:12px}
+  p:last-child{margin-bottom:0}
+  .lead{color:var(--muted);max-width:74ch;font-size:17px}
+  .kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--green-dark);
+  }
+  .kicker::before{content:"";width:26px;height:2px;background:var(--green);border-radius:2px}
+  .muted{color:var(--muted)}
+  .small{font-size:13.5px;line-height:1.6}
+  .tiny{font-size:12px;line-height:1.55;color:var(--soft)}
+  strong{font-weight:700}
 
+  /* ---------- Superfícies ---------- */
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:26px;
+    box-shadow:var(--shadow);
+  }
+  .grid{display:grid;gap:18px}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(4,1fr)}
+  .navy{
+    background:var(--navy);
+    color:var(--on-navy);
+    border-radius:18px;
+    padding:38px;
+    box-shadow:var(--shadow);
+  }
+  .navy h3,.navy h2{color:var(--on-navy)}
+  .callout{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-left:4px solid var(--green);
+    border-radius:12px;
+    padding:16px 20px;
+  }
+  .callout-navy{border-left-color:var(--navy)}
+
+  /* ---------- Badges ---------- */
+  .badge{
+    display:inline-flex;align-items:center;gap:7px;
+    font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    padding:7px 13px;border-radius:999px;white-space:nowrap;
+  }
+  .badge-green{background:rgba(34,197,94,.12);color:var(--green-dark);border:1px solid rgba(34,197,94,.4)}
+  .badge-navy{background:rgba(13,34,64,.07);color:var(--navy);border:1px solid rgba(13,34,64,.22)}
+  .badge-line{background:transparent;color:var(--green-dark);border:1px solid rgba(34,197,94,.45)}
+
+  /* ---------- Logo ---------- */
+  .logo{height:58px;width:auto;color:var(--navy);--cut:#FFFFFF;display:block}
+  .logo-light{color:var(--on-navy);--cut:var(--navy)}
+  .logo-cut-bg{--cut:var(--bg)}
+
+  /* ---------- Botões de teste ---------- */
+  .btn-test{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--wa);color:#fff;
+    font-weight:700;font-size:13.5px;letter-spacing:.04em;
+    padding:12px 20px;border-radius:999px;text-decoration:none;
+    border:1px solid rgba(255,255,255,.15);
+    transition:background .2s ease, transform .2s ease;
+    box-shadow:0 2px 6px rgba(37,211,102,.18);
+  }
+  .btn-test:hover{background:#1EBE5B}
+  .btn-test svg{width:16px;height:16px;flex:0 0 16px}
+  .btn-test-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px}
+  .btn-test-row .tiny{margin:0}
+
+  /* ---------- Capa ---------- */
+  .cover{
+    min-height:92vh;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:14px 0 0;
+  }
+  .cover-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .cover-doc{
+    font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+    border:1px solid var(--border);background:var(--card);border-radius:999px;padding:9px 16px;
+  }
+  .cover-body{padding:56px 0 40px}
+  .cover-kicker{
+    font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--green-dark);margin-bottom:22px;
+  }
+  .cover h1{
+    font-weight:800;font-size:clamp(34px,6vw,64px);line-height:1.06;letter-spacing:-.02em;margin-bottom:18px;
+  }
+  .cover-sub{
+    font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(17px,2.4vw,23px);color:var(--navy);margin-bottom:34px;
+  }
+  .cover-rule{width:86px;height:4px;background:var(--green);border-radius:4px;margin-bottom:34px}
+  .cover-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .cover-meta .card{padding:20px 22px}
+  .meta-label{font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
+  .meta-value{font-family:'Sora',sans-serif;font-weight:700;font-size:17px;color:var(--black);line-height:1.35}
+  .cover-foot{
+    border-top:1px solid var(--border);
+    padding:18px 0 26px;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-size:13px;color:var(--soft);
+  }
+
+  /* ---------- Listas ---------- */
+  ul.clean{list-style:none}
+  ul.clean li{position:relative;padding-left:26px;margin-bottom:9px}
+  ul.clean li::before{
+    content:"";position:absolute;left:0;top:.62em;width:14px;height:8px;
+    border-left:2.4px solid var(--green-dark);border-bottom:2.4px solid var(--green-dark);
+    transform:rotate(-45deg);
+  }
+  ul.dots li{position:relative;padding-left:20px;margin-bottom:8px;list-style:none}
+  ul.dots li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--green)}
+
+  /* ---------- Fluxo ---------- */
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:0;max-width:760px}
+  .step{
+    display:flex;gap:16px;align-items:flex-start;
+    background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px;
+    box-shadow:var(--shadow);
+  }
+  .step-num{
+    flex:0 0 34px;height:34px;border-radius:50%;
+    background:var(--navy);color:#fff;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:14px;
+    display:grid;place-items:center;
+  }
+  .step-title{font-family:'Sora',sans-serif;font-weight:700;font-size:15.5px;color:var(--black)}
+  .step-desc{font-size:14px;color:var(--muted)}
+  .step-arrow{display:grid;place-items:center;padding:7px 0;color:var(--green-dark)}
+  .step-arrow svg{width:20px;height:20px}
+
+  /* ---------- Tabela comparativa ---------- */
+  .table-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow)}
+  table{width:100%;border-collapse:collapse;min-width:860px;font-size:14.5px}
+  thead th{
+    background:var(--navy);color:#fff;
+    font-weight:700;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+    text-align:left;padding:15px 16px;
+  }
+  tbody td{padding:18px 16px;border-top:1px solid var(--border);vertical-align:top;color:var(--muted)}
+  tbody td:first-child{color:var(--black)}
+  .sol-name{font-family:'Sora',sans-serif;font-weight:700;font-size:16px;color:var(--black);display:block;margin-bottom:8px}
+  .price{font-family:'Sora',sans-serif;font-weight:700;font-size:15.5px;color:var(--black);white-space:nowrap}
+  .price small{display:block;font-family:'Manrope',sans-serif;font-weight:600;font-size:11.5px;color:var(--soft);letter-spacing:.04em}
+  tr.rec td{background:#F2FBF5}
+  tr.rec td:first-child{box-shadow:inset 4px 0 0 var(--green)}
+  tr.comp td{background:#F8F7F3}
+  tr.comp td:first-child{box-shadow:inset 4px 0 0 var(--navy)}
+  .ind{display:block;margin-top:9px;font-size:12.5px;line-height:1.5;color:var(--muted);border-top:1px dashed var(--border);padding-top:8px}
+
+  /* ---------- Resumo comercial ---------- */
+  .summary table{min-width:560px}
+  .summary td,.summary th{padding:15px 18px}
+  .summary td:nth-child(2),.summary td:nth-child(3){text-align:right}
+  .summary th:nth-child(2),.summary th:nth-child(3){text-align:right}
+
+  /* ---------- Mockup de conversa ---------- */
+  .chat{
+    max-width:560px;margin:0 auto;background:var(--card);
+    border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);
+  }
+  .chat-head{
+    background:var(--navy);color:#fff;padding:14px 20px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .chat-avatar{
+    width:36px;height:36px;border-radius:50%;flex:0 0 36px;
+    background:rgba(37,211,102,.16);border:1px solid rgba(37,211,102,.5);
+    display:grid;place-items:center;color:var(--wa);
+  }
+  .chat-name{font-family:'Sora',sans-serif;font-weight:700;font-size:14.5px}
+  .chat-status{font-size:11.5px;color:rgba(255,255,255,.65)}
+  .chat-body{padding:20px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+  .msg{max-width:84%;padding:11px 15px;border-radius:14px;font-size:14.5px;line-height:1.55}
+  .msg .t{display:block;font-size:10.5px;font-weight:600;color:var(--soft);margin-top:5px;text-align:right;letter-spacing:.03em}
+  .msg-client{align-self:flex-end;background:#E7F6EC;border:1px solid rgba(34,197,94,.28);border-bottom-right-radius:4px}
+  .msg-ia{align-self:flex-start;background:#fff;border:1px solid var(--border);border-bottom-left-radius:4px}
+  .msg-ia .who{display:block;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green-dark);margin-bottom:3px}
+  .msg-human{align-self:flex-start;background:#fff;border:1px solid var(--border);border-left:3px solid var(--green);border-bottom-left-radius:4px}
+  .msg-human .who{display:block;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:3px}
+  .msg-sys{
+    align-self:center;background:rgba(13,34,64,.07);color:var(--navy);
+    font-weight:600;font-size:12px;padding:6px 14px;border-radius:999px;text-align:center;
+  }
+
+  /* ---------- Pilares / ícones ---------- */
+  .icon{
+    width:44px;height:44px;border-radius:12px;flex:0 0 44px;
+    background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);
+    display:grid;place-items:center;color:var(--green-dark);margin-bottom:14px;
+  }
+  .icon svg{width:22px;height:22px}
+  .icon-navy{background:rgba(13,34,64,.06);border-color:rgba(13,34,64,.2);color:var(--navy)}
+  .pillar h3{font-size:16.5px}
+  .pillar ul{margin-top:6px}
+
+  /* ---------- Preços destacados ---------- */
+  .price-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px}
+  .price-box{
+    flex:1 1 180px;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px 18px;
+  }
+  .price-box .meta-label{margin-bottom:4px}
+  .price-box .val{font-family:'Sora',sans-serif;font-weight:800;font-size:22px;color:var(--navy)}
+  .price-box .val small{font-family:'Manrope',sans-serif;font-weight:600;font-size:13px;color:var(--muted)}
+
+  /* ---------- Próximos passos ---------- */
+  .steps5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:passo}
+  .pstep{position:relative;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 18px;box-shadow:var(--shadow)}
+  .pstep .n{
+    font-family:'Sora',sans-serif;font-weight:800;font-size:13px;color:var(--green-dark);
+    border:1.6px solid rgba(34,197,94,.5);border-radius:999px;padding:4px 11px;display:inline-block;margin-bottom:12px;
+  }
+  .pstep h3{font-size:15px;margin-bottom:6px}
+  .pstep p{font-size:13.5px;color:var(--muted)}
+
+  /* ---------- Encerramento ---------- */
+  .closing{text-align:center;padding:56px 40px}
+  .closing .logo{margin:0 auto 30px;height:52px}
+  .closing .phrase{
+    font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(20px,3vw,28px);line-height:1.35;margin-bottom:20px;
+  }
+  .closing .quote{color:rgba(255,255,255,.82);max-width:62ch;margin:0 auto 34px;font-size:16px}
+  .closing .sig{border-top:1px solid rgba(255,255,255,.22);padding-top:24px;display:inline-block}
+  .closing .sig .brand{font-family:'Sora',sans-serif;font-weight:800;font-size:19px;letter-spacing:.02em}
+  .closing .sig .line{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
+
+  footer.doc-foot{
+    margin-top:64px;border-top:1px solid var(--border);padding-top:22px;
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    font-size:12.5px;color:var(--soft);
+  }
+
+  /* ---------- Responsivo ---------- */
+  @media (max-width:900px){
+    .grid-4{grid-template-columns:repeat(2,1fr)}
+    .grid-3{grid-template-columns:repeat(2,1fr)}
+    .steps5{grid-template-columns:repeat(2,1fr)}
+    .cover-meta{grid-template-columns:1fr}
+  }
+  @media (max-width:620px){
+    .doc{padding:28px 18px 70px}
+    .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+    .steps5{grid-template-columns:1fr}
+    .navy{padding:28px 22px}
+    section{margin-top:56px}
+  }
+
+  /* ---------- Impressão / PDF ---------- */
+  @page{size:A4;margin:12mm}
+  @media print{
+    body{background:#FFFFFF;font-size:12.5px}
+    .doc{max-width:none;padding:0}
+    .cover{min-height:auto;break-after:page;padding:0}
+    section{margin-top:40px}
+    .print-break{break-before:page}
+    .card,.step,.msg,.pstep,.price-box,.callout,.chat{box-shadow:none;break-inside:avoid}
+    .navy{break-inside:avoid}
+    h2{break-after:avoid}
+    table{min-width:0;font-size:10.5px}
+    thead th{padding:9px 10px;font-size:9.5px}
+    tbody td{padding:10px}
+    .summary table{min-width:0}
+    section{margin-top:34px}
+    .lead{font-size:12.5px}
+    .btn-test{box-shadow:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SÍMBOLO DO LOGO (preservando proporção e geometria originais) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="uc-logo" viewBox="0 0 360 128">
+    <g stroke="currentColor" fill="none" stroke-width="9">
+      <circle cx="54" cy="64" r="40"/>
+      <path d="M79.90 66.27 A26 26 0 0 1 56.27 89.90"/>
+      <path d="M51.73 89.90 A26 26 0 0 1 28.10 66.27"/>
+      <path d="M28.10 61.73 A26 26 0 0 1 51.73 38.10"/>
+      <path d="M56.27 38.10 A26 26 0 0 1 79.90 61.73"/>
+    </g>
+    <circle cx="54" cy="64" r="14" fill="currentColor"/>
+    <rect x="51.6" y="50" width="4.8" height="28" fill="var(--cut,#FFFFFF)"/>
+    <rect x="40" y="61.6" width="28" height="4.8" fill="var(--cut,#FFFFFF)"/>
+    <text x="336" y="40" text-anchor="end" font-family="Sora, sans-serif" font-weight="700" font-size="21" letter-spacing="6" fill="currentColor">GRUPO</text>
+    <text x="112" y="92" font-family="Sora, sans-serif" font-weight="800" font-size="62" letter-spacing="1" fill="currentColor">ÚNICO</text>
+    <text x="112" y="121" font-family="Sora, sans-serif" font-weight="700" font-size="23" letter-spacing="5" fill="currentColor">CONTATO</text>
+  </symbol>
+</svg>
+
+<div class="doc">
+
+  <!-- ==================== 01 · CAPA ==================== -->
+  <header class="cover">
+    <div class="cover-top">
+      <svg class="logo logo-cut-bg" role="img" aria-label="Grupo Único Contato"><use href="#uc-logo"/></svg>
+      <span class="cover-doc">Documento de projeto · Proposta comercial</span>
+    </div>
+
+    <div class="cover-body">
+      <p class="cover-kicker">Proposta comercial personalizada · Operação de atendimento digital</p>
+      <h1>PROJETO DE<br>INTELIGÊNCIA ARTIFICIAL</h1>
+      <div class="cover-rule"></div>
+      <p class="cover-sub">Automação de atendimento e evolução do delivery</p>
+
+      <div class="cover-meta">
+        <div class="card">
+          <div class="meta-label">Cliente</div>
+          <div class="meta-value">Drogaria Beta Farma</div>
+        </div>
+        <div class="card">
+          <div class="meta-label">Identificação institucional</div>
+          <div class="meta-value">Único Contato</div>
+        </div>
+        <div class="card">
+          <div class="meta-label">Natureza do documento</div>
+          <div class="meta-value">Projeto executivo e proposta comercial</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-foot">
+      <span>Preparado a partir da reunião com Adauto Matos · operação Drogaria Beta Farma</span>
+      <span>Uso destinado à apresentação e análise interna do cliente</span>
+    </div>
+  </header>
+
+  <!-- ==================== 02 · CONTEXTO DA OPERAÇÃO ==================== -->
+  <section id="contexto">
+    <span class="kicker">02 · Contexto da operação</span>
+    <h2>O momento atual da Beta Farma</h2>
+    <p class="lead">
+      A Drogaria Beta Farma utiliza o ERP Alpha 7 e já é cliente Único Contato. Em reunião, Adauto Matos relatou que o
+      delivery está em crescimento e que a equipe precisa conciliar o atendimento digital com o atendimento presencial
+      e as demais atividades da loja.
+    </p>
+
+    <div class="grid grid-2" style="margin-top:26px">
+      <div class="card">
+        <h3>Canais e volume relatados</h3>
+        <ul class="dots small muted">
+          <li>Quatro números de WhatsApp, distribuídos entre duas unidades.</li>
+          <li>Aproximadamente 5.000 entregas por mês na loja principal, conforme informado na reunião.</li>
+          <li>Solicitações simultâneas chegando a diferentes membros da equipe.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Organização do atendimento</h3>
+        <ul class="dots small muted">
+          <li>Atendimento dividido entre profissionais responsáveis por medicamentos e atendentes de perfumaria.</li>
+          <li>O primeiro contato e a coleta das informações iniciais ainda demandam tempo da equipe.</li>
+          <li>A operação valoriza o atendimento humanizado e o conhecimento técnico dos profissionais.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3>Interesse manifestado na reunião</h3>
+      <p class="muted" style="font-size:15px">
+        Adauto demonstrou interesse em utilizar inteligência artificial para agilizar a primeira interação, identificar
+        o que o cliente precisa e encaminhar a solicitação ao profissional adequado — mantendo a equipe humana
+        responsável pela condução técnica do atendimento.
+      </p>
+    </div>
+
+    <div class="callout" style="margin-top:18px">
+      <p style="font-weight:600;font-size:15.5px;color:var(--black)">
+        O objetivo não é substituir a equipe humana. É reduzir tarefas repetitivas e permitir que os atendentes
+        dediquem mais tempo aos casos que exigem conhecimento e atenção.
+      </p>
+    </div>
+    <p class="tiny" style="margin-top:10px">
+      Os volumes e a estrutura descritos nesta seção foram relatados pela operação na reunião e não constituem
+      medições realizadas pela Único Contato.
+    </p>
+  </section>
+
+  <!-- ==================== 03 · OBJETIVO DO PROJETO ==================== -->
+  <section id="objetivo">
+    <span class="kicker">03 · Objetivo do projeto</span>
+    <h2>O que a operação precisa conquistar</h2>
+    <p class="lead">Criar uma operação de atendimento inteligente capaz de:</p>
+
+    <div class="grid grid-2" style="margin-top:24px">
+      <div class="card">
+        <ul class="clean small muted" style="font-size:15px">
+          <li>Agilizar a primeira resposta ao cliente.</li>
+          <li>Identificar a intenção do contato.</li>
+          <li>Coletar e organizar informações iniciais.</li>
+          <li>Direcionar o atendimento para a fila ou equipe adequada.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <ul class="clean small muted" style="font-size:15px">
+          <li>Reduzir a repetição de perguntas iniciais.</li>
+          <li>Preservar o atendimento humano, principalmente em questões relacionadas a medicamentos.</li>
+          <li>Criar condições para ampliar a automação gradualmente.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="navy" style="margin-top:22px">
+      <p style="font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(19px,2.6vw,25px);line-height:1.4">
+        A IA organiza o primeiro atendimento. A equipe humana mantém o protagonismo nos casos que exigem
+        conhecimento técnico, cuidado e decisão profissional.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== 04 · SOLUÇÃO RECOMENDADA ==================== -->
+  <section id="solucao">
+    <span class="kicker">04 · Solução recomendada</span>
+    <h2>IA Atende <span class="badge badge-green" style="vertical-align:middle;margin-left:8px">Recomendação inicial</span></h2>
+    <p class="lead">
+      A IA Atende é a opção que melhor corresponde à necessidade apresentada por Adauto na reunião e, por isso, é a
+      recomendação para iniciar o projeto.
+    </p>
+
+    <div class="card" style="margin-top:24px">
+      <h3>O que é</h3>
+      <p class="muted" style="font-size:15px">
+        A IA Atende atua no primeiro contato com o cliente, identificando sua necessidade e organizando as informações
+        antes de encaminhar a conversa ao atendimento humano, de acordo com o fluxo configurado. Ela funciona como uma
+        camada de apoio à equipe — não como substituta dos profissionais.
+      </p>
+    </div>
+
+    <div class="btn-test-row">
+      <a class="btn-test" href="https://w.app/ia-atende" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Testar a IA Atende
+      </a>
+      <span class="tiny">Link de demonstração · conversa via WhatsApp com a IA configurada em ambiente de exemplo.</span>
+    </div>
+
+    <h3 style="margin:34px 0 16px">Funcionamento proposto</h3>
+    <div class="flow">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><div class="step-title">Cliente chama no WhatsApp</div>
+        <div class="step-desc">O contato chega pelos canais já utilizados pela operação.</div></div>
+      </div>
+      <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg></div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><div class="step-title">IA realiza o primeiro atendimento</div>
+        <div class="step-desc">Resposta inicial rápida, a qualquer horário.</div></div>
+      </div>
+      <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg></div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><div class="step-title">Identifica o assunto e coleta informações iniciais</div>
+        <div class="step-desc">Perguntas curtas para organizar a solicitação.</div></div>
+      </div>
+      <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg></div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div><div class="step-title">Organiza e direciona a solicitação</div>
+        <div class="step-desc">Encaminhamento à fila ou equipe adequada, conforme a configuração.</div></div>
+      </div>
+      <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg></div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div><div class="step-title">Atendente humano assume a conversa</div>
+        <div class="step-desc">O profissional recebe o contexto já organizado.</div></div>
+      </div>
+      <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg></div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div><div class="step-title">Continuidade do atendimento e conclusão da venda</div>
+        <div class="step-desc">A condução e a decisão permanecem com a equipe da Beta Farma.</div></div>
+      </div>
+    </div>
+
+    <h3 style="margin:34px 0 16px">Exemplos de aplicação</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3 style="font-size:16px">Solicitação de medicamento</h3>
+        <p class="small muted">A IA identifica a necessidade inicial e direciona a conversa para o profissional responsável por medicamentos.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:16px">Solicitação de perfumaria</h3>
+        <p class="small muted">A IA identifica o produto ou a necessidade e encaminha a solicitação para a equipe de perfumaria, conforme a configuração aprovada.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:16px">Dúvida ou solicitação complexa</h3>
+        <p class="small muted">A IA encaminha a conversa para o atendimento humano.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:16px">Cliente ainda não explicou o que precisa</h3>
+        <p class="small muted">A IA faz perguntas iniciais curtas para organizar a solicitação antes da transferência.</p>
+      </div>
+    </div>
+    <p class="tiny" style="margin-top:10px">
+      Os cenários acima são exemplos de funcionamento a configurar na implantação, não fluxos já implantados na operação da Beta Farma.
+    </p>
+
+    <h3 style="margin:34px 0 16px">Limites de atuação</h3>
+    <div class="callout callout-navy">
+      <ul class="dots small muted">
+        <li>A IA Atende não é ferramenta de diagnóstico, prescrição ou substituição do farmacêutico.</li>
+        <li>Não são prometidas respostas clínicas autônomas, decisões sobre medicamentos ou orientação farmacêutica independente.</li>
+        <li>O atendimento de medicamentos, receitas, dúvidas técnicas e demais assuntos sensíveis segue as regras operacionais definidas com a Beta Farma, encaminhando os casos necessários à equipe humana.</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:22px">
+      <h3>Investimento da IA Atende</h3>
+      <div class="price-row">
+        <div class="price-box">
+          <div class="meta-label">Implantação</div>
+          <div class="val">R$ 1.800,00</div>
+        </div>
+        <div class="price-box">
+          <div class="meta-label">Mensalidade</div>
+          <div class="val">R$ 400,00<small>/mês</small></div>
+        </div>
+      </div>
+      <p class="tiny" style="margin-top:12px">Valores comerciais informados para este projeto. Não há descontos, fidelidade ou condições de pagamento adicionais presumidas neste documento.</p>
+    </div>
+  </section>
+
+  <!-- ==================== 05 · COMPARATIVO ==================== -->
+  <section id="comparativo" class="print-break">
+    <span class="kicker">05 · Comparativo das soluções disponíveis</span>
+    <h2>Quatro caminhos possíveis, um ponto de partida</h2>
+    <p class="lead">
+      As opções abaixo permitem comparar finalidade, aplicação principal e investimento. A IA Atende aparece destacada
+      como recomendação inicial; as demais são alternativas de maior amplitude ou personalização.
+    </p>
+
+    <div class="table-scroll" style="margin-top:26px">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:17%">Solução</th>
+            <th style="width:31%">Finalidade</th>
+            <th style="width:26%">Aplicação principal</th>
+            <th style="width:13%">Implantação</th>
+            <th style="width:13%">Mensalidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="rec">
+            <td>
+              <span class="sol-name">IA Atende</span>
+              <span class="badge badge-green">Recomendação inicial</span>
+            </td>
+            <td>Primeiro atendimento, identificação da necessidade, coleta de informações iniciais e direcionamento para o atendimento humano.
+              <span class="ind">Indicação para a Beta Farma: opção recomendada para começar, de acordo com a necessidade relatada na reunião.</span>
+            </td>
+            <td>Organizar o primeiro contato nos canais de atendimento da operação, direcionando cada solicitação à fila ou equipe adequada.</td>
+            <td><span class="price">R$ 1.800,00</span></td>
+            <td><span class="price">R$ 400,00<small>/mês</small></span></td>
+          </tr>
+          <tr>
+            <td><span class="sol-name">IA Vende</span></td>
+            <td>Evoluir o atendimento para uma jornada comercial assistida, com potencial de consultar produtos, apresentar informações comerciais, organizar orçamentos e apoiar a montagem de pedidos quando a integração e o escopo técnico permitirem.
+              <span class="ind">Indicação: evolução comercial após validação técnica, especialmente da integração com o Alpha 7.</span>
+            </td>
+            <td>Jornada de venda assistida com consulta de produtos e apoio a orçamentos e pedidos, sujeita ao escopo de integração aprovado.</td>
+            <td><span class="price">R$ 2.500,00</span></td>
+            <td><span class="price">R$ 450,00<small>/mês</small></span></td>
+          </tr>
+          <tr>
+            <td><span class="sol-name">IA Projeto</span></td>
+            <td>Desenvolvimento de uma solução personalizada, com regras, fluxos e integrações definidos conforme as necessidades específicas do cliente.
+              <span class="ind">Indicação: operações que necessitem de personalizações além do escopo padronizado. O escopo definitivo deverá ser especificado e aprovado antes da contratação.</span>
+            </td>
+            <td>Fluxos, regras e integrações sob medida, desenhados em conjunto com a operação.</td>
+            <td><span class="price">R$ 4.000,00</span></td>
+            <td><span class="price">R$ 500,00<small>/mês</small></span></td>
+          </tr>
+          <tr class="comp">
+            <td>
+              <span class="sol-name">Catálogo Único</span>
+              <span class="badge badge-navy">Complementar</span>
+            </td>
+            <td>Solução que combina catálogo digital, inteligência artificial, interface de compra, atendimento humano e painel de gestão.
+              <span class="ind">Indicação: alternativa ou complemento para estruturar o canal digital de vendas. Investimento próprio, separado das três opções de IA (detalhado na seção 07).</span>
+            </td>
+            <td>Cliente encontra produtos e avança na montagem de pedidos via WhatsApp ou webchat, sem instalar aplicativo.</td>
+            <td><span class="price">R$ 3.000,00</span></td>
+            <td><span class="price">R$ 1.227,00<small>/mês</small></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:20px">
+      <div class="callout">
+        <p class="small muted">
+          <strong style="color:var(--black)">Nota de escopo — IA Vende:</strong> funcionalidades descritas no material do produto
+          (integração com ERP, consulta de produtos, preços e estoque, atendimento com texto, áudio e imagens, apoio à montagem de
+          orçamento e carrinho e transferência ao atendente com histórico e resumo) são previstas para validação técnica e definição
+          de escopo, especialmente quanto à integração com o Alpha 7. Não estão prometidas automaticamente para a Beta Farma.
+          A conclusão da venda e os casos que exigem avaliação profissional seguem as regras da operação e a validação humana aplicável.
+        </p>
+      </div>
+      <div class="callout">
+        <p class="small muted">
+          <strong style="color:var(--black)">Nota de escopo — IA Projeto:</strong> não se declara que a IA Projeto inclua, sem
+          validação, todas as funcionalidades das demais soluções. O escopo definitivo é especificado e aprovado antes da contratação.
+          As soluções não são somadas automaticamente e não há pacotes com desconto neste documento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 06 · FUNCIONAMENTO DA IA NO ATENDIMENTO ==================== -->
+  <section id="funcionamento">
+    <span class="kicker">06 · Funcionamento da IA no atendimento</span>
+    <h2>Uma camada de apoio à equipe, não uma substituta</h2>
+    <p class="lead">
+      A IA assume a etapa inicial e repetitiva da conversa; os profissionais mantêm a condução técnica, o cuidado e a
+      decisão. Abaixo, um exemplo ilustrativo de como a conversa pode ocorrer após a configuração do fluxo.
+    </p>
+
+    <div class="chat" style="margin-top:28px">
+      <div class="chat-head">
+        <div class="chat-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <div>
+          <div class="chat-name">Drogaria Beta Farma</div>
+          <div class="chat-status">Atendimento via WhatsApp · exemplo ilustrativo</div>
+        </div>
+      </div>
+      <div class="chat-body">
+        <div class="msg msg-client">Boa tarde! Vocês têm protetor solar infantil? Preciso pra hoje.<span class="t">14:02</span></div>
+        <div class="msg msg-ia"><span class="who">IA · primeiro atendimento</span>Boa tarde! Aqui é da Beta Farma. Pra eu organizar seu atendimento mais rápido: é um produto de perfumaria ou um medicamento com receita?<span class="t">14:02</span></div>
+        <div class="msg msg-client">É perfumaria, só o protetor mesmo.<span class="t">14:03</span></div>
+        <div class="msg msg-ia"><span class="who">IA · primeiro atendimento</span>Perfeito! Já registrei sua solicitação e vou transferir para a equipe de perfumaria, que continua seu atendimento por aqui.<span class="t">14:03</span></div>
+        <div class="msg-sys">Transferido para a equipe de perfumaria · contexto da conversa enviado</div>
+        <div class="msg msg-human"><span class="who">Atendente humano</span>Boa tarde! Sou da equipe de perfumaria da Beta Farma. Temos duas opções de protetor solar infantil disponíveis hoje. Posso te enviar os detalhes e valores?<span class="t">14:05</span></div>
+      </div>
+    </div>
+    <p class="tiny" style="text-align:center;margin-top:10px">
+      Exemplo ilustrativo de fluxo a configurar na implantação. Não representa conversas reais da operação nem resultados obtidos.
+    </p>
+
+    <div class="grid grid-3" style="margin-top:30px">
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9h8M8 13h5"/><path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/></svg></div>
+        <h3 style="font-size:16px">Primeira resposta rápida</h3>
+        <p class="small muted">A IA responde imediatamente, identifica o assunto e faz perguntas curtas para organizar a solicitação antes da transferência.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 14h6v6h-6z"/><path d="M10 7h4a3 3 0 0 1 3 3v4M14 17h-4a3 3 0 0 1-3-3v-4"/></svg></div>
+        <h3 style="font-size:16px">Direcionamento por fila</h3>
+        <p class="small muted">A conversa é encaminhada à equipe adequada (medicamentos, perfumaria ou humano geral), conforme o fluxo configurado com a operação.</p>
+      </div>
+      <div class="card">
+        <div class="icon icon-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.4 8.3-8 9-4.6-.7-8-4-8-9V7l8-4z"/><path d="M9.5 12l2 2 3.5-4"/></svg></div>
+        <h3 style="font-size:16px">Casos sensíveis ao humano</h3>
+        <p class="small muted">Medicamentos, receitas, dúvidas técnicas e demais assuntos sensíveis seguem as regras definidas com a Beta Farma, com encaminhamento à equipe humana.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <p class="small muted">
+        <strong style="color:var(--black)">O que a IA não faz:</strong> não realiza diagnóstico ou prescrição, não substitui o
+        farmacêutico ou os atendentes e não toma decisões autônomas sobre medicamentos. O tom de voz é cordial e alinhado à
+        marca, como camada de apoio à equipe.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== 07 · CATÁLOGO ÚNICO ==================== -->
+  <section id="catalogo" class="print-break">
+    <span class="kicker">07 · Catálogo Único · solução complementar</span>
+    <h2>Catálogo Único: estruturar o canal digital de vendas</h2>
+    <p class="lead">
+      O Catálogo Único é apresentado no material de produto como uma solução que combina catálogo digital, inteligência
+      artificial, interface de compra, atendimento humano e painel de gestão. Sua proposta é permitir que o cliente
+      encontre produtos e avance na montagem de pedidos por meio do WhatsApp ou do webchat, sem precisar instalar um
+      aplicativo. Trata-se de uma alternativa ou complemento às soluções de IA, com investimento próprio.
+    </p>
+
+    <div class="btn-test-row">
+      <a class="btn-test" href="https://w.app/catalogo-unico" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg>
+        Testar o Catálogo Único
+      </a>
+      <span class="tiny">Link de demonstração · catálogo digital integrado ao WhatsApp em ambiente de exemplo.</span>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:26px">
+      <div class="card pillar">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 4 4c0 1.5-.8 2.6-1.6 3.4-.6.6-.9 1-.9 1.6h-3c0-.6-.3-1-.9-1.6C8.8 9.6 8 8.5 8 7a4 4 0 0 1 4-4z"/><path d="M10.5 15h3M10.5 18h3M12 12v9"/></svg></div>
+        <h3>1 · IA integrada ao catálogo</h3>
+        <ul class="dots small muted">
+          <li>Atendimento por linguagem natural.</li>
+          <li>Identificação da necessidade do cliente.</li>
+          <li>Busca de produtos no catálogo.</li>
+          <li>Envio de link para a busca correspondente.</li>
+          <li>Atendimento via WhatsApp e webchat, conforme a configuração contratada.</li>
+        </ul>
+      </div>
+      <div class="card pillar">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l8-4 8 4v10l-8 4-8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></div>
+        <h3>2 · Catálogo digital</h3>
+        <ul class="dots small muted">
+          <li>Busca de produtos.</li>
+          <li>Categorias e vitrine.</li>
+          <li>Carrinho com totalização.</li>
+          <li>Consulta dos pedidos, conforme recursos habilitados.</li>
+          <li>Experiência de navegação sem exigir a instalação de um aplicativo.</li>
+        </ul>
+      </div>
+      <div class="card pillar">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H4z"/><path d="M8 9h8M8 12h5"/><path d="M2 19h20"/></svg></div>
+        <h3>3 · Console do atendente</h3>
+        <ul class="dots small muted">
+          <li>Acesso ao histórico da conversa, conforme integração disponível.</li>
+          <li>Visualização e organização do pedido.</li>
+          <li>Apoio à montagem de carrinho ou orçamento.</li>
+          <li>Continuidade do atendimento humano.</li>
+        </ul>
+      </div>
+      <div class="card pillar">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M21 20H3"/></svg></div>
+        <h3>4 · Painel de gestão</h3>
+        <ul class="dots small muted">
+          <li>Acompanhamento de sessões e carrinhos.</li>
+          <li>Indicadores de utilização.</li>
+          <li>Visualização de produtos buscados e informações disponíveis.</li>
+          <li>Acompanhamento da operação conforme os recursos liberados.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:20px">
+      <div class="callout callout-navy">
+        <h3 style="font-size:16px">Integração com o Alpha 7</h3>
+        <p class="small muted">
+          O material do Catálogo Único descreve integração com o Alpha 7 para dados de produtos, preços e estoque, além de
+          sincronização de pedidos. Antes de afirmar que todas essas funções estarão disponíveis na implantação da Beta Farma,
+          é necessário validar o escopo técnico da integração e a versão do produto. O material também menciona pagamento por
+          Pix, funcionalidade que não é apresentada como garantida sem confirmação de que está habilitada na configuração a
+          ser contratada.
+        </p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:16px">Investimento do Catálogo Único</h3>
+        <div class="price-row">
+          <div class="price-box">
+            <div class="meta-label">Implantação</div>
+            <div class="val">R$ 3.000,00</div>
+          </div>
+          <div class="price-box">
+            <div class="meta-label">Mensalidade</div>
+            <div class="val">R$ 1.227,00<small>/mês</small></div>
+          </div>
+        </div>
+        <p class="tiny" style="margin-top:12px">
+          Valores comerciais informados para a Beta Farma, separados das três opções de IA. A quantidade de usuários, CNPJs,
+          lojas e eventuais limites operacionais deve ser confirmada antes da contratação; não se presume que o valor contemple
+          automaticamente todas as unidades ou todos os CNPJs da operação.
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3 style="font-size:16px">Custos variáveis do catálogo</h3>
+      <ul class="dots small muted">
+        <li>O consumo de tokens de IA pode ser cobrado separadamente, conforme as condições do produto.</li>
+        <li>As tarifas da WhatsApp Business Platform são cobradas conforme as regras de mensageria aplicáveis e não devem ser tratadas como incluídas na mensalidade.</li>
+        <li>A licença do Alpha 7 continua sendo uma relação comercial separada com o fornecedor do ERP.</li>
+      </ul>
+      <p class="tiny" style="margin-top:10px">
+        Não são utilizados neste documento valores de tokens, licenciamento de ERP, sessões, carrinhos, faturamento ou conversão
+        de ambiente de demonstração como se fossem resultados da Beta Farma, nem comparações de economia contra marketplaces ou
+        garantias de retorno financeiro.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== 08 · LIMITAÇÕES E PREMISSAS ==================== -->
+  <section id="limitacoes">
+    <span class="kicker">08 · Limitações e premissas técnicas</span>
+    <h2>Premissas que orientam a contratação</h2>
+    <p class="lead">Pontos apresentados com transparência para que a decisão da Beta Farma seja tomada com base no escopo real de cada solução.</p>
+
+    <div class="grid grid-2" style="margin-top:26px">
+      <div class="card">
+        <div class="icon icon-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2.5"/></svg></div>
+        <h3 style="font-size:16px">Integração com o Alpha 7</h3>
+        <p class="small muted">
+          A Beta Farma utiliza o Alpha 7, mas os recursos efetivamente disponíveis dependem do escopo de integração aprovado.
+          Esta proposta não garante acesso irrestrito a todas as tabelas e informações do ERP. Consulta de produtos, preços,
+          estoque, cadastro, histórico de compras ou sincronização de pedidos só será apresentada como funcionalidade contratada
+          quando houver confirmação técnica.
+        </p>
+      </div>
+      <div class="card">
+        <div class="icon icon-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.6 5.5-4.6S13.9 16 14.5 19"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.6c2.4.2 4.3 1.6 4.9 4.4"/></svg></div>
+        <h3 style="font-size:16px">Validação humana</h3>
+        <p class="small muted">
+          A IA apoia a operação e encaminha situações que necessitem de decisão ou avaliação humana. Não há promessa de
+          substituição de farmacêuticos, balconistas ou atendentes.
+        </p>
+      </div>
+      <div class="card">
+        <div class="icon icon-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9M9.5 10c0-1.2 1.1-2 2.5-2s2.5.8 2.5 2-1.1 1.8-2.5 2-2.5.8-2.5 2 1.1 2 2.5 2 2.5-.8 2.5-2"/></svg></div>
+        <h3 style="font-size:16px">Custos de uso de IA</h3>
+        <p class="small muted">
+          Quando aplicável ao produto contratado, o consumo de tokens ou serviços externos de IA poderá gerar cobrança variável,
+          separada do investimento de implantação e da mensalidade. O formato de contratação e cobrança deverá ser confirmado
+          antes da assinatura.
+        </p>
+      </div>
+      <div class="card">
+        <div class="icon icon-navy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        <h3 style="font-size:16px">Mensageria Meta</h3>
+        <p class="small muted">
+          Mensagens enviadas pela API oficial do WhatsApp podem gerar tarifas variáveis conforme as regras e a classificação
+          aplicáveis. Como referência comercial, considerar aproximadamente <strong style="color:var(--black)">R$ 0,07 a R$ 0,35 por template</strong>,
+          deixando explícito que o custo efetivo depende da classificação e da tabela vigente da Meta. A mensalidade dos produtos
+          de IA não inclui automaticamente os custos de mensageria.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 09 · INVESTIMENTO E RECOMENDAÇÃO ==================== -->
+  <section id="investimento" class="print-break">
+    <span class="kicker">09 · Investimento</span>
+    <h2>Resumo comercial e recomendação</h2>
+
+    <div class="navy" style="margin-top:26px">
+      <span class="badge badge-line" style="margin-bottom:16px">Por onde começar?</span>
+      <h3 style="font-size:clamp(18px,2.4vw,23px);margin-bottom:12px">Recomendamos iniciar pela IA Atende.</h3>
+      <p style="color:rgba(255,255,255,.85);font-size:15px;max-width:80ch">
+        Na reunião, Adauto demonstrou que a principal necessidade para a frente de IA é agilizar o primeiro atendimento,
+        organizar as solicitações recebidas e encaminhá-las aos profissionais certos, sem perder a qualidade do atendimento
+        humano. A IA Atende é o ponto de partida mais diretamente relacionado a essa necessidade.
+      </p>
+      <ul class="dots small" style="margin-top:14px;color:rgba(255,255,255,.85)">
+        <li>A IA Vende poderá ser avaliada caso a Beta Farma deseje ampliar a automação comercial com consultas e montagem de pedidos integradas ao Alpha 7, após validação técnica.</li>
+        <li>A IA Projeto é indicada caso seja necessário desenvolver fluxos e regras personalizadas.</li>
+        <li>O Catálogo Único constitui alternativa ou complemento para estruturar a experiência de catálogo e compra digital.</li>
+      </ul>
+      <p class="tiny" style="margin-top:14px;color:rgba(255,255,255,.6)">
+        As soluções não precisam ser contratadas juntas. Não há descontos nem afirmação de que um pacote conjunto tenha preço inferior.
+      </p>
+    </div>
+
+    <h3 style="margin:34px 0 14px">Quadro-resumo de valores</h3>
+    <div class="table-scroll summary">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:40%">Solução</th>
+            <th style="width:30%">Implantação</th>
+            <th style="width:30%">Mensalidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="rec">
+            <td><span class="sol-name">IA Atende</span><span class="badge badge-green">Recomendação inicial</span></td>
+            <td><span class="price">R$ 1.800,00</span></td>
+            <td><span class="price">R$ 400,00<small>/mês</small></span></td>
+          </tr>
+          <tr>
+            <td><span class="sol-name">IA Vende</span></td>
+            <td><span class="price">R$ 2.500,00</span></td>
+            <td><span class="price">R$ 450,00<small>/mês</small></span></td>
+          </tr>
+          <tr>
+            <td><span class="sol-name">IA Projeto</span></td>
+            <td><span class="price">R$ 4.000,00</span></td>
+            <td><span class="price">R$ 500,00<small>/mês</small></span></td>
+          </tr>
+          <tr class="comp">
+            <td><span class="sol-name">Catálogo Único</span><span class="badge badge-navy">Complementar</span></td>
+            <td><span class="price">R$ 3.000,00</span></td>
+            <td><span class="price">R$ 1.227,00<small>/mês</small></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:18px">
+      <div class="callout">
+        <p class="small muted">
+          Os valores de implantação são cobrados <strong style="color:var(--black)">uma vez por projeto</strong>; as mensalidades são
+          <strong style="color:var(--black)">recorrentes</strong>, conforme as condições que forem formalizadas.
+        </p>
+      </div>
+      <div class="callout">
+        <p class="small muted">
+          <strong style="color:var(--black)">Tokens de IA, tarifas de mensageria Meta e eventuais custos externos não estão
+          automaticamente incluídos nos valores acima. Consulte o escopo de cada solução antes da contratação.</strong>
+        </p>
+      </div>
+    </div>
+    <p class="tiny" style="margin-top:12px">
+      Os valores acima não substituem a mensalidade atual da Beta Farma com a Único Contato, não são somados entre si e não
+      constituem pacote. Este documento não contempla o projeto de CRM de pós-venda e reativação, que possui proposta comercial separada.
+    </p>
+  </section>
+
+  <!-- ==================== 10 · PRÓXIMOS PASSOS ==================== -->
+  <section id="proximos" class="print-break">
+    <span class="kicker">10 · Próximos passos</span>
+    <h2>Caminho sugerido para a decisão</h2>
+    <p class="lead">Sequência recomendada de trabalho, sem prazos definidos neste documento.</p>
+
+    <div class="steps5" style="margin-top:26px">
+      <div class="pstep">
+        <span class="n">Passo 1</span>
+        <h3>Definir a solução de interesse</h3>
+        <p>Selecionar IA Atende, IA Vende, IA Projeto ou Catálogo Único.</p>
+      </div>
+      <div class="pstep">
+        <span class="n">Passo 2</span>
+        <h3>Validar o escopo técnico</h3>
+        <p>Confirmar integração com Alpha 7, canais contemplados, fluxos de atendimento e eventuais dependências externas.</p>
+      </div>
+      <div class="pstep">
+        <span class="n">Passo 3</span>
+        <h3>Alinhar as condições comerciais</h3>
+        <p>Confirmar investimento, mensalidade, custos variáveis e itens incluídos.</p>
+      </div>
+      <div class="pstep">
+        <span class="n">Passo 4</span>
+        <h3>Avaliar eventual piloto</h3>
+        <p>Caso seja aprovado internamente, definir duração, filas ou números envolvidos e critérios de validação.</p>
+      </div>
+      <div class="pstep">
+        <span class="n">Passo 5</span>
+        <h3>Iniciar a implantação</h3>
+        <p>Formalizar o escopo e realizar a configuração da solução escolhida.</p>
+      </div>
+    </div>
+    <p class="tiny" style="margin-top:12px">Prazos de implantação e datas de início serão definidos após a validação de escopo e a formalização comercial.</p>
+  </section>
+
+  <!-- ==================== 11 · ENCERRAMENTO ==================== -->
+  <section id="encerramento">
+    <div class="navy closing">
+      <svg class="logo logo-light" role="img" aria-label="Grupo Único Contato"><use href="#uc-logo"/></svg>
+      <p class="phrase">Tecnologia para agilizar o atendimento, sem perder o que faz a Beta Farma ser Beta Farma.</p>
+      <p class="quote">"A proposta é começar pela necessidade real da operação, validar a solução e evoluir gradualmente para novas possibilidades de automação e venda digital."</p>
+      <div class="sig">
+        <div class="brand">Único Contato</div>
+        <div class="line">Projeto de Inteligência Artificial | Drogaria Beta Farma</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="doc-foot">
+    <span>Único Contato · Documento confidencial preparado para a Drogaria Beta Farma.</span>
+    <span>Valores, escopos e condições sujeitos a formalização contratual.</span>
+  </footer>
+
+</div>
+</body>
+</html>
